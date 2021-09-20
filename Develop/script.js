@@ -14,11 +14,13 @@ console.log(upperCaseLetters);
 var generatePassword = function() {
 
   // keeps user from asking for too few or many characters
-  var userInput = window.prompt("how many characters would you like in your password?");
-
   var characterCount = function () {
+
+    var userInput = window.prompt("how many characters would you like in your password?");
+
     if (userInput >= 8 && userInput <=128) {
       console.log("password length: " + userInput);
+      return(userInput)
     } else if (userInput > 128) {
       window.alert("I'm sorry but that is too many characters.");
      characterCount();
@@ -27,36 +29,44 @@ var generatePassword = function() {
       characterCount();
     } else {
       window.alert("I'm sorry but that isn't a valid option");
+      characterCount();
     }
   }
-  characterCount()
+  var userInput = characterCount();
 
   // asking the user what they would like to include in the password
   var userSpecial = window.confirm("would you like to allow special characters in your password?");
 
   var userUpperCase = window.confirm("Would you like uppercase letters in your passwords?");
   
-  var userLowercase = window.confirm("Would you like lowercase letters in your passwords?");
+  var userLowerCase = window.confirm("Would you like lowercase letters in your passwords?");
 
   var userNumbers = window.confirm("Would you like to add numbers to your password?");
+    // for loop to ensure password is desired length 
+  var passcode = "";
 
-  var typeSelector = Math.floor(Math.random() * 4);
+  for (var i = 0; i < userInput; i++) {
 
-
-  if (typeSelector = 0 && userSpecial) {
-    passwordItem = specialCharacters[Math.floor(Math.random() * 8)];
-    console.log(passwordItem);
-  } else if (typeSelector = 1 && userUpperCase) {
-    var passwordItem = upperCaseLetters[Math.floor(Math.random() * 26)];
-    console.log(passwordItem);
-  } else if (typeSelector = 2 && userLowerCase) {
-    var passwordItem = lowerCaseLetters[Math.floor(Math.random() * 26)];
-    console.log(passwordItem);
-  } else if (typeSelector = 3 && userNumbers) {
-    var passwordItem = [Math.floor(Math.random() * 9)];
-    console.log(passwordItem);
+    var typeSelector = Math.floor(Math.random() * 4);
+    if (typeSelector === 0 && userSpecial) {
+      passwordItem = specialCharacters[Math.floor(Math.random() * 8)];
+      console.log(passwordItem);
+    } else if (typeSelector === 1 && userUpperCase) {
+      var passwordItem = upperCaseLetters[Math.floor(Math.random() * 26)];        console.log(passwordItem);
+    } else if (typeSelector === 2 && userLowerCase) {
+      var passwordItem = lowerCaseLetters[Math.floor(Math.random() * 26)];
+      console.log(passwordItem);
+    } else if (typeSelector === 3 && userNumbers) {
+      var passwordItem = [Math.floor(Math.random() * 9)];
+      console.log(passwordItem);
+    }
+    //adding all items together to create a password
+    passcode = passcode + passwordItem;
   }
-  
+
+  return(passcode);
+
+  // console.log("new password: " + passcode);
 
 
 
